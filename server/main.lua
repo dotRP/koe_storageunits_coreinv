@@ -97,6 +97,14 @@ AddEventHandler('trono_storageunits:registerStash', function(storageID)
     end)
 end)
 
+RegisterNetEvent('trono_storageunits:breachLog')
+AddEventHandler('trono_storageunits:breachLog', function(storageID)
+    local src = source
+    local xPlayer = ESX.GetPlayerFromId(src)
+
+    discordLog(xPlayer.getName() ..  ' - ' .. xPlayer.getIdentifier(), 'has breached the unit #' ..storageID)
+end)
+
 function discordLog(name, message)
   local data = {
       {
