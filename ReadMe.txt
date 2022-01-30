@@ -6,7 +6,7 @@ DEPENDENCIES
 esx_legacy
 ox_inventory
 qtarget (can be used with BT-Target, just replace every instance of the word qtarget with bt-target and it will work)
-nh-context (the version i use is included)
+nh-context (https://github.com/nerohiro/nh-context)
 
 OPTIONAL 
 okokNotify (https://forum.cfx.re/t/okoknotify-standalone-paid/3907758)
@@ -23,6 +23,7 @@ The config is basic because i wasnt planning on releasing this, any questions or
 
 
 INSTALL
+Setup your channel to log the breaches, in the server.lua past the webhook url into the url at the top of the lua.
 
 Put trono_storageunits and nh-context in your resource folder 
 
