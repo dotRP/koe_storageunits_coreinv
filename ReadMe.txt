@@ -3,6 +3,7 @@ This script was created by Dalkoe
 Simple storage unit script, made the way it is for my server Trono RP but it can be used on any server. 
 
 DEPENDENCIES
+esx_legacy
 ox_inventory
 qtarget (can be used with BT-Target, just replace every instance of the word qtarget with bt-target and it will work)
 nh-context (the version i use is included)
