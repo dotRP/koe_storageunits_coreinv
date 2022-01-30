@@ -438,9 +438,11 @@ end)
 
 RegisterNetEvent('trono_storageunits:policeBreach')
 AddEventHandler('trono_storageunits:policeBreach', function(data)
+
     for k, v in pairs(Config.Policeraid.Jobs) do
         if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade >= v.grade then
             TriggerServerEvent('trono_storageunits:registerStash', storageID)
+            TriggerServerEvent('trono_storageunits:breachLog', storageID)
         end
     end  
     for k, v in pairs(Config.Policeraid.Jobs) do

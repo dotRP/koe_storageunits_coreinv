@@ -1,3 +1,9 @@
+discord = {
+  ['webhook'] = '',  ---PUT YOUR WEBHOOK URL HERE
+  ['name'] = 'Storage Units'
+}
+
+
 ----Gets ESX-----
 ESX = nil
 
@@ -90,3 +96,14 @@ AddEventHandler('trono_storageunits:registerStash', function(storageID)
         TriggerClientEvent('trono_storageunits:openStash', src, stashID)
     end)
 end)
+
+function discordLog(name, message)
+  local data = {
+      {
+          ["color"] = '3553600',
+          ["title"] = "**".. name .."**",
+          ["description"] = message,
+      }
+  }
+  PerformHttpRequest(discord['webhook'], function(err, text, headers) end, 'POST', json.encode({username = discord['name'], embeds = data}), { ['Content-Type'] = 'application/json' })
+end
