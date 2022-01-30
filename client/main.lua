@@ -438,9 +438,17 @@ end)
 
 RegisterNetEvent('trono_storageunits:policeBreach')
 AddEventHandler('trono_storageunits:policeBreach', function(data)
-    if ESX.PlayerData.job.name == 'police' then
-        TriggerServerEvent('trono_storageunits:registerStash', storageID)
-    else
+    for k, v in pairs(Config.Policeraid.Jobs) do
+        if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade >= v.grade then
+            TriggerServerEvent('trono_storageunits:registerStash', storageID)
+        end
+    end  
+    for k, v in pairs(Config.Policeraid.Jobs) do
+        if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade < v.grade then
+            exports['okokNotify']:Alert("Storage", "Not a high enough rank to do that.", 8000, 'error')
+        end
+    end 
+    if ESX.PlayerData.job.name ~= 'police' then
         exports['okokNotify']:Alert("Storage", "You cant do that, youre not a cop.", 8000, 'error')
-    end
+    end  
 end)
