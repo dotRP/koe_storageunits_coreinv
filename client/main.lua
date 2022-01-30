@@ -36,271 +36,34 @@ end)
 
 --Qtaret Zones for each storage
 Citizen.CreateThread(function()
-    
-        exports['qtarget']:AddBoxZone("storageunit1", vector3(-73.26, -1196.35, 27.66), 2, 5.4, {
-            name="storageunit1",
-                heading=0,
-                debugPoly=false,
-                minZ=25.86,
-                maxZ=29.86,
-            }, {
-                options = {
-                {
-                event = "trono_storageunits:checkOwned",
-                icon = "fas fa-warehouse",
-                label = "Storage Unit 1",
-                id = 1
-                },
-            },
-                job = {""},
-                distance = 2.5
-            })
-            exports['qtarget']:AddBoxZone("storageunit2", vector3(-66.61, -1198.67, 27.74), 2, 5.4, {
-                name="storageunit2",
-                heading=314,
-                debugPoly=false,
-                minZ=25.94,
-                maxZ=29.94
-            }, {
-                options = {
-                {
-                event = "trono_storageunits:checkOwned",
-                icon = "fas fa-warehouse",
-                label = "Storage Unit 2",
-                id = 2
-                },
-            },
-                job = {""},
-                distance = 2.5
-            })
 
-        exports['qtarget']:AddBoxZone("storageunit3", vector3(-60.88, -1204.31, 27.79), 2, 5.4, {
-            name="storageunit3",
-            heading=313,
-            --debugPoly=true,
-            minZ=25.99,
-            maxZ=29.99
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 3",
-            id = 3
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
+	local storageConfig = Config.Storages
+	for i = 1, #storageConfig, 1 do
+        local storageName = storageConfig[1].name
+	local length, width = storageConfig[i].bt_length or 0.5, storageConfig[i].bt_width or 0.5
+	local minZ, maxZ = storageConfig[i].bt_minZ or 10.0, storageConfig[i].bt_maxZ or 100.0
+	local heading = storageConfig[i].bt_heading or 0.0
+	local distance = storageConfig[i].bt_distance or 2.0
+	local storageid = storageConfig[i].id
 
-        exports['qtarget']:AddBoxZone("storageunit4", vector3(-55.63, -1209.76, 28.28), 2, 5.4, {
-            name="storageunit4",
-            heading=314,
-            --debugPoly=true,
-            minZ=26.48,
-            maxZ=30.48
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 4",
-            id = 4
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit5", vector3(-51.84, -1216.39, 28.7), 2, 5.4, {
-            name="storageunit5",
-            heading=270,
-            --debugPoly=true,
-            minZ=26.9,
-            maxZ=30.9
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 5",
-            id = 5
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit6", vector3(-55.88, -1229.75, 28.76), 2, 5.4, {
-            name="storageunit6",
-            heading=227,
-            --debugPoly=true,
-            minZ=26.96,
-            maxZ=30.96
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 6",
-            id = 6
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit7", vector3(-60.08, -1234.31, 28.89), 2, 5.4, {
-            name="storageunit7",
-            heading=226,
-            --debugPoly=true,
-            minZ=27.09,
-            maxZ=31.09
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 7",
-            id = 7
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit8", vector3(-65.34, -1240.06, 29.03), 2, 5.4, {
-            name="storageunit8",
-            heading=226,
-            --debugPoly=true,
-            minZ=27.23,
-            maxZ=31.23
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 8",
-            id = 8
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit9", vector3(-73.77, -1243.99, 29.11), 2, 5.4, {
-            name="storageunit9",
-            heading=179,
-            --debugPoly=true,
-            minZ=27.31,
-            maxZ=31.31
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 9",
-            id = 9
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit10", vector3(-73.07, -1233.18, 29.02), 2, 5.4, {
-            name="storageunit10",
-            heading=51,
-            --debugPoly=true,
-            minZ=27.22,
-            maxZ=31.22
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 10",
-            id = 10
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit11", vector3(-67.51, -1226.06, 28.86), 2, 5.4, {
-            name="storageunit11",
-            heading=51,
-            --debugPoly=true,
-            minZ=27.06,
-            maxZ=31.06
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 11",
-            id = 11
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit12", vector3(-66.55, -1212.4, 28.31), 2, 5.4, {
-            name="storageunit12",
-            heading=316,
-            --debugPoly=true,
-            minZ=26.51,
-            maxZ=30.51
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 12",
-            id = 12
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit13", vector3(-71.74, -1207.16, 27.89), 2, 5.4, {
-            name="storageunit13",
-            heading=316,
-            --debugPoly=true,
-            minZ=26.09,
-            maxZ=30.09
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 13",
-            id = 13
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
-
-        exports['qtarget']:AddBoxZone("storageunit14", vector3(-78.6, -1205.21, 27.63), 2, 5.4, {
-            name="storageunit14",
-            heading=0,
-            --debugPoly=true,
-            minZ=25.83,
-            maxZ=29.83
-        }, {
-            options = {
-            {
-            event = "trono_storageunits:checkOwned",
-            icon = "fas fa-warehouse",
-            label = "Storage Unit 14",
-            id = 14
-            },
-        },
-            job = {""},
-            distance = 2.5
-        })
+	exports['qtarget']:AddBoxZone(i .. storageName, storageConfig[i].coords, length, width, {
+		name=i .. storageName,
+		heading=heading,
+		debugPoly=false,
+		minZ=minZ,
+		maxZ=maxZ
+	}, {
+		options = {
+			{
+				event = "trono_storageunits:checkOwned",
+				icon = "fas fa-warehouse",
+				label = "Open " .. storageName,
+				id = storageid,
+			},
+		},
+		distance = 2.5
+	})
+        end
 end)
    
 ---Checks the IDs above to then check the status of the storage youre interacting with
