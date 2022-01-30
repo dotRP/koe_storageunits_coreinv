@@ -1,4 +1,4 @@
-This script was created by Dalkoe 
+This script was created by Dalkoe and additional features added by serraz
 
 Simple storage unit script, made the way it is for my server Trono RP but it can be used on any server. 
 
