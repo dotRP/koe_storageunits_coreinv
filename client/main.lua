@@ -55,7 +55,7 @@ Citizen.CreateThread(function()
 	}, {
 		options = {
 			{
-				event = "trono_storageunits:checkOwned",
+				event = "koe_storageunits:checkOwned",
 				icon = "fas fa-warehouse",
 				label = "Open " .. storageName,
 				id = storageid,
@@ -67,16 +67,16 @@ Citizen.CreateThread(function()
 end)
    
 ---Checks the IDs above to then check the status of the storage youre interacting with
-RegisterNetEvent('trono_storageunits:checkOwned')
-AddEventHandler('trono_storageunits:checkOwned', function(data)
+RegisterNetEvent('koe_storageunits:checkOwned')
+AddEventHandler('koe_storageunits:checkOwned', function(data)
     storageID = data.id
-    TriggerServerEvent('trono_storageunits:checkUnit', storageID)
+    TriggerServerEvent('koe_storageunits:checkUnit', storageID)
 end)
 
 
 --If the storage is NOT owned this menu pops up
-RegisterNetEvent('trono_storageunits:buyMenu')
-AddEventHandler('trono_storageunits:buyMenu',function(storageID)
+RegisterNetEvent('koe_storageunits:buyMenu')
+AddEventHandler('koe_storageunits:buyMenu',function(storageID)
 TriggerEvent('nh-context:sendMenu', {
         {
             header = "Storage Units",
@@ -86,7 +86,7 @@ TriggerEvent('nh-context:sendMenu', {
             header = "Purchase Storage Unit",
             txt = 'Purchase this unit for $' ..Config.UnitPrice,
             params = {
-                event = 'trono_storageunits:buyStorage',
+                event = 'koe_storageunits:buyStorage',
             }
         }
 
@@ -94,15 +94,15 @@ TriggerEvent('nh-context:sendMenu', {
 
 end)
 
-RegisterNetEvent('trono_storageunits:buyStorage')
-AddEventHandler('trono_storageunits:buyStorage', function()
-    TriggerServerEvent('trono_storageunits:buyUnit', storageID)
+RegisterNetEvent('koe_storageunits:buyStorage')
+AddEventHandler('koe_storageunits:buyStorage', function()
+    TriggerServerEvent('koe_storageunits:buyUnit', storageID)
 end)
 
 
 --If the storage IS owned by YOU this menu pops up
-RegisterNetEvent('trono_storageunits:ownerMenu')
-AddEventHandler('trono_storageunits:ownerMenu',function(storageID)
+RegisterNetEvent('koe_storageunits:ownerMenu')
+AddEventHandler('koe_storageunits:ownerMenu',function(storageID)
 
 TriggerEvent('nh-context:sendMenu', {
         {
@@ -114,7 +114,7 @@ TriggerEvent('nh-context:sendMenu', {
             header = "Storage Unit",
             txt = "Open Storage",
             params = {
-                event = 'trono_storageunits:registerStash',
+                event = 'koe_storageunits:registerStash',
             }
         },
         {
@@ -122,20 +122,20 @@ TriggerEvent('nh-context:sendMenu', {
             header = "Sell this storage unit",
             txt = "Sell the storage unit",
             params = {
-                event = 'trono_storageunits:sellConfirm',
+                event = 'koe_storageunits:sellConfirm',
             }
         }
 
     })
 end)
 
-RegisterNetEvent('trono_storageunits:registerStash')
-AddEventHandler('trono_storageunits:registerStash', function(data)
-    TriggerServerEvent('trono_storageunits:registerStash', storageID)
+RegisterNetEvent('koe_storageunits:registerStash')
+AddEventHandler('koe_storageunits:registerStash', function(data)
+    TriggerServerEvent('koe_storageunits:registerStash', storageID)
 end)
 
-RegisterNetEvent('trono_storageunits:openStash')
-AddEventHandler('trono_storageunits:openStash', function(stashID)
+RegisterNetEvent('koe_storageunits:openStash')
+AddEventHandler('koe_storageunits:openStash', function(stashID)
     TriggerEvent('ox_inventory:openInventory', 'stash', stashID)
     Wait(2000)
     LoadAnimDict('anim@gangops@facility@servers@bodysearch@')
@@ -149,15 +149,15 @@ function LoadAnimDict(dict)
     end
 end
 
-RegisterNetEvent('trono_storageunits:sellConfirm')
-AddEventHandler('trono_storageunits:sellConfirm',function(storageID)
+RegisterNetEvent('koe_storageunits:sellConfirm')
+AddEventHandler('koe_storageunits:sellConfirm',function(storageID)
 
 TriggerEvent('nh-context:sendMenu', {
         {   id = 1,
             header = "< Go Back",
             txt = "",
             params = {
-                event = 'trono_storageunits:ownerMenu',
+                event = 'koe_storageunits:ownerMenu',
             }
         },
         {
@@ -165,21 +165,21 @@ TriggerEvent('nh-context:sendMenu', {
             header = "SELL",
             txt = "Click to sell the unit",
             params = {
-                event = 'trono_storageunits:storageSell',
+                event = 'koe_storageunits:storageSell',
             }
         }
 
     })
 end)
 
-RegisterNetEvent('trono_storageunits:storageSell')
-AddEventHandler('trono_storageunits:storageSell', function()
-    TriggerServerEvent('trono_storageunits:sellUnit', storageID)
+RegisterNetEvent('koe_storageunits:storageSell')
+AddEventHandler('koe_storageunits:storageSell', function()
+    TriggerServerEvent('koe_storageunits:sellUnit', storageID)
 end)
 
 --If the storage IS owned but not by you this menu pops up
-RegisterNetEvent('trono_storageunits:otherMenu')
-AddEventHandler('trono_storageunits:otherMenu',function(storageID)
+RegisterNetEvent('koe_storageunits:otherMenu')
+AddEventHandler('koe_storageunits:otherMenu',function(storageID)
 
 TriggerEvent('nh-context:sendMenu', {
         {
@@ -190,7 +190,7 @@ TriggerEvent('nh-context:sendMenu', {
             header = "POLICE",
             txt = "Breach the unit",
             params = {
-                event = 'trono_storageunits:policeBreach',
+                event = 'koe_storageunits:policeBreach',
             }
         }
 
@@ -199,13 +199,13 @@ TriggerEvent('nh-context:sendMenu', {
 end)
 
 
-RegisterNetEvent('trono_storageunits:policeBreach')
-AddEventHandler('trono_storageunits:policeBreach', function(data)
+RegisterNetEvent('koe_storageunits:policeBreach')
+AddEventHandler('koe_storageunits:policeBreach', function(data)
 
     for k, v in pairs(Config.Policeraid.Jobs) do
         if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade >= v.grade then
-            TriggerServerEvent('trono_storageunits:registerStash', storageID)
-            TriggerServerEvent('trono_storageunits:breachLog', storageID)
+            TriggerServerEvent('koe_storageunits:registerStash', storageID)
+            TriggerServerEvent('koe_storageunits:breachLog', storageID)
         end
     end  
     for k, v in pairs(Config.Policeraid.Jobs) do

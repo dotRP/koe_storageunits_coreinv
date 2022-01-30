@@ -11,8 +11,8 @@ TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 
 
-RegisterNetEvent('trono_storageunits:checkUnit')
-AddEventHandler('trono_storageunits:checkUnit', function(storageID)
+RegisterNetEvent('koe_storageunits:checkUnit')
+AddEventHandler('koe_storageunits:checkUnit', function(storageID)
     local src = source
     local xPlayer = ESX.GetPlayerFromId(src)
     local identifier =  ESX.GetPlayerFromId(src).identifier
@@ -26,17 +26,17 @@ AddEventHandler('trono_storageunits:checkUnit', function(storageID)
         -- print(json.encode(result))
         -- print(storageID)
         if result[1].identifier == nil then
-          TriggerClientEvent('trono_storageunits:buyMenu', src, storageID)
+          TriggerClientEvent('koe_storageunits:buyMenu', src, storageID)
         elseif result[1].identifier == identifier then
-          TriggerClientEvent('trono_storageunits:ownerMenu', src, storageID)
+          TriggerClientEvent('koe_storageunits:ownerMenu', src, storageID)
         else
-          TriggerClientEvent('trono_storageunits:otherMenu', src, storageID)
+          TriggerClientEvent('koe_storageunits:otherMenu', src, storageID)
         end
     end)
 end)
 
-RegisterNetEvent('trono_storageunits:buyUnit')
-AddEventHandler('trono_storageunits:buyUnit', function(storageID)
+RegisterNetEvent('koe_storageunits:buyUnit')
+AddEventHandler('koe_storageunits:buyUnit', function(storageID)
     local src = source
     local xPlayer = ESX.GetPlayerFromId(src)
     local identifier =  ESX.GetPlayerFromId(src).identifier
@@ -60,8 +60,8 @@ AddEventHandler('trono_storageunits:buyUnit', function(storageID)
     end) 
 end)
 
-RegisterNetEvent('trono_storageunits:sellUnit')
-AddEventHandler('trono_storageunits:sellUnit', function(storageID)
+RegisterNetEvent('koe_storageunits:sellUnit')
+AddEventHandler('koe_storageunits:sellUnit', function(storageID)
     local src = source
     local xPlayer = ESX.GetPlayerFromId(src)
 
@@ -80,8 +80,8 @@ AddEventHandler('trono_storageunits:sellUnit', function(storageID)
     end)
 end)
 
-RegisterNetEvent('trono_storageunits:registerStash')
-AddEventHandler('trono_storageunits:registerStash', function(storageID)
+RegisterNetEvent('koe_storageunits:registerStash')
+AddEventHandler('koe_storageunits:registerStash', function(storageID)
     local src = source
     local xPlayer = ESX.GetPlayerFromId(src)
     local identifier =  ESX.GetPlayerFromId(src).identifier
@@ -93,12 +93,12 @@ AddEventHandler('trono_storageunits:registerStash', function(storageID)
     function(result3)
         stashID = json.encode(result3)
         exports.ox_inventory:RegisterStash(stashID, "Storage Unit", 70, 300000)
-        TriggerClientEvent('trono_storageunits:openStash', src, stashID)
+        TriggerClientEvent('koe_storageunits:openStash', src, stashID)
     end)
 end)
 
-RegisterNetEvent('trono_storageunits:breachLog')
-AddEventHandler('trono_storageunits:breachLog', function(storageID)
+RegisterNetEvent('koe_storageunits:breachLog')
+AddEventHandler('koe_storageunits:breachLog', function(storageID)
     local src = source
     local xPlayer = ESX.GetPlayerFromId(src)
 
