@@ -23,11 +23,11 @@ The config is basic because i wasnt planning on releasing this, any questions or
 INSTALL
 Setup your channel to log the breaches, in the server.lua paste the webhook url into the url at the top of the lua.
 
-Put trono_storageunits and nh-context in your resource folder 
+Put koe_storageunits and nh-context in your resource folder 
 
 add this to your cfg. 
 
 start nh-context
-start trono_storageunits
+start koe_storageunits
 
 add the sql file included to your database. 
