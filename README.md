@@ -22,10 +22,10 @@ add the sql file included to your database.
 ---
 
 <h2 align='center'>Requirements</h2>
-<a href='https://github.com/overextended/qtarget'>qtarget</a>
-<a href='https://github.com/overextended/ox_inventory'>ox_inventory</a>
-<a href='https://github.com/nerohiro/nh-context'>nh-context</a>
-<a href='https://forum.cfx.re/t/okoknotify-standalone-paid/3907758'>okokNotify</a>(Optional)
+---<a href='https://github.com/overextended/qtarget'>qtarget</a>
+---<a href='https://github.com/overextended/ox_inventory'>ox_inventory</a>
+---<a href='https://github.com/nerohiro/nh-context'>nh-context</a>
+---<a href='https://forum.cfx.re/t/okoknotify-standalone-paid/3907758'>okokNotify</a>(Optional)
 
 ---
 
