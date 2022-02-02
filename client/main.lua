@@ -60,6 +60,13 @@ Citizen.CreateThread(function()
 				label = "Open " .. storageName,
 				id = storageid,
 			},
+            {
+				event = "koe_storageunits:policeBreach",
+				icon = "fas fa-warehouse",
+				label = "Breach the unit",
+				id = storageid,
+                job = 'police', 
+            },
 		},
 		distance = 2.5
 	})
@@ -95,8 +102,60 @@ TriggerEvent('nh-context:sendMenu', {
 end)
 
 RegisterNetEvent('koe_storageunits:buyStorage')
-AddEventHandler('koe_storageunits:buyStorage', function()
-    TriggerServerEvent('koe_storageunits:buyUnit', storageID)
+AddEventHandler('koe_storageunits:buyStorage', function(data)
+local keyboard = exports["nh-keyboard"]:KeyboardInput({
+    header = "Create a Pin for your storage", 
+    rows = {
+        {
+            id = 0, 
+            txt = "Pin for storage"
+        },
+      
+    }
+})
+
+    if keyboard ~= nil then
+          TriggerServerEvent('koe_storageunits:buyUnit', storageID,keyboard[1].input)
+    end
+
+end)
+
+RegisterNetEvent('koe_storageunits:changePin')
+AddEventHandler('koe_storageunits:changePin', function(data)
+local keyboard = exports["nh-keyboard"]:KeyboardInput({
+    header = "Enter the pin for your storage", 
+    rows = {
+        {
+            id = 0, 
+            txt = "Pin for storage"
+        },
+      
+    }
+})
+
+    if keyboard ~= nil then
+           ESX.TriggerServerCallback('koe_storageunits:checkPin', function(pin)
+        if pin then
+           local keyboard2 = exports["nh-keyboard"]:KeyboardInput({
+    header = "Create a new Pin for the storage", 
+    rows = {
+        {
+            id = 0, 
+            txt = "Pin for storage"
+        },
+      
+    }
+})
+
+    if keyboard2 ~= nil then
+          TriggerServerEvent('koe_storageunits:pinChange', storageID,keyboard2[1].input)
+    end
+        else
+		   exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
+        end
+    end, storageID,keyboard[1].input)
+    end
+
 end)
 
 
@@ -117,8 +176,16 @@ TriggerEvent('nh-context:sendMenu', {
                 event = 'koe_storageunits:registerStash',
             }
         },
-        {
+        {   
             id = 51,
+            header = "Pin Management",
+            txt = "Change Pin",
+            params = {
+                event = 'koe_storageunits:changePin',
+            }
+        }, 
+        {
+            id = 52,
             header = "Sell this storage unit",
             txt = "Sell the storage unit",
             params = {
@@ -131,7 +198,26 @@ end)
 
 RegisterNetEvent('koe_storageunits:registerStash')
 AddEventHandler('koe_storageunits:registerStash', function(data)
-    TriggerServerEvent('koe_storageunits:registerStash', storageID)
+local keyboard = exports["nh-keyboard"]:KeyboardInput({
+    header = "Enter the pin for your storage", 
+    rows = {
+        {
+            id = 0, 
+            txt = "Pin for storage"
+        },
+      
+    }
+})
+
+    if keyboard ~= nil then
+           ESX.TriggerServerCallback('koe_storageunits:checkPin', function(pin)
+        if pin then
+           TriggerServerEvent('koe_storageunits:registerStash', storageID)
+        else
+		   exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
+        end
+    end, storageID,keyboard[1].input)
+    end
 end)
 
 RegisterNetEvent('koe_storageunits:openStash')
@@ -183,16 +269,16 @@ AddEventHandler('koe_storageunits:otherMenu',function(storageID)
 
 TriggerEvent('nh-context:sendMenu', {
         {
-            header = "This unit is owned.",
+            header = "Owned Storage",
             txt = "",
         },
-        {
-            header = "POLICE",
-            txt = "Breach the unit",
+        {   
+            header = "Storage Unit",
+            txt = "Open Storage",
             params = {
-                event = 'koe_storageunits:policeBreach',
+                event = 'koe_storageunits:registerStash',
             }
-        }
+        },
 
     })
 
@@ -210,10 +296,10 @@ AddEventHandler('koe_storageunits:policeBreach', function(data)
     end  
     for k, v in pairs(Config.Policeraid.Jobs) do
         if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade < v.grade then
-            exports['okokNotify']:Alert("Storage", "Not a high enough rank to do that.", 8000, 'error')
+            exports['swt_notifications']:Negative('error','Not a high enough rank to do that.','top',8000,true)
         end
     end 
     if ESX.PlayerData.job.name ~= 'police' then
-        exports['okokNotify']:Alert("Storage", "You cant do that, youre not a cop.", 8000, 'error')
+        exports['swt_notifications']:Negative('error','You cant do that, youre not a cop.','top',8000,true)
     end  
 end)

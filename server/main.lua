@@ -23,8 +23,6 @@ AddEventHandler('koe_storageunits:checkUnit', function(storageID)
       ['@id'] = storageID
     }, 
     function(result)
-        -- print(json.encode(result))
-        -- print(storageID)
         if result[1].identifier == nil then
           TriggerClientEvent('koe_storageunits:buyMenu', src, storageID)
         elseif result[1].identifier == identifier then
@@ -35,8 +33,30 @@ AddEventHandler('koe_storageunits:checkUnit', function(storageID)
     end)
 end)
 
+ESX.RegisterServerCallback('koe_storageunits:checkPin', function(source, cb, storageID, pinnum)
+ MySQL.Async.fetchAll("SELECT pin FROM storageunits WHERE id = @id",{
+    ["@id"] = storageID,
+ },
+function(result)
+        if result[1].pin == pinnum then
+            cb(true)
+        else
+            cb(false)
+        end
+    end)
+end)
+
+RegisterNetEvent('koe_storageunits:pinChange')
+AddEventHandler('koe_storageunits:pinChange', function(storageID,pin)
+    local src = source
+    local xPlayer = ESX.GetPlayerFromId(src)
+    local identifier =  ESX.GetPlayerFromId(src).identifier
+               MySQL.Async.fetchAll("UPDATE storageunits SET pin = @pin WHERE id =@id",{['@pin']  = pin, ['@id'] = storageID}, function(result)
+            end)
+end)
+
 RegisterNetEvent('koe_storageunits:buyUnit')
-AddEventHandler('koe_storageunits:buyUnit', function(storageID)
+AddEventHandler('koe_storageunits:buyUnit', function(storageID,pin)
     local src = source
     local xPlayer = ESX.GetPlayerFromId(src)
     local identifier =  ESX.GetPlayerFromId(src).identifier
@@ -45,16 +65,18 @@ AddEventHandler('koe_storageunits:buyUnit', function(storageID)
     { 
       ['@identifier'] = owner,
       ['@id'] = storageID
-    }, 
+    },
     function(result2) 
-      -- print(json.encode(result2))
+
             if xPlayer.getMoney() >= Config.UnitPrice then
               MySQL.Async.fetchAll("UPDATE storageunits SET identifier = @identifier WHERE id =@id",{['@identifier']  = identifier, ['@id'] = storageID}, function(result)
                 xPlayer.removeMoney(Config.UnitPrice)
             end)
-                TriggerClientEvent('okokNotify:Alert', src, "Storage", "You now own this storage unit", 10000, 'success')
-            else    
-              TriggerClientEvent('okokNotify:Alert', src, "Storage", "Not enough money", 10000, 'error')
+               MySQL.Async.fetchAll("UPDATE storageunits SET pin = @pin WHERE id =@id",{['@pin']  = pin, ['@id'] = storageID}, function(result)
+            end)
+                TriggerClientEvent("swt_notifications:Success",source,'success','You now own this storage unit','top',8000,true)
+            else
+                TriggerClientEvent("swt_notifications:Negative",'error','Not enough money','top',8000,true)
             end
 
     end) 
@@ -71,12 +93,12 @@ AddEventHandler('koe_storageunits:sellUnit', function(storageID)
       ['@id'] = storageID
     }, 
     function(result2) 
-      -- print(json.encode(result2))
     
-              MySQL.Async.fetchAll("UPDATE storageunits SET identifier = @identifier WHERE id =@id",{['@identifier']  = identifier, ['@id'] = storageID}, function(result)
+              MySQL.Async.fetchAll("UPDATE storageunits SET identifier = @identifier, pin = @pin WHERE id =@id",{['@identifier']  = identifier, ['@id'] = storageID, ['@pin'] = pin}, function(result)
                 xPlayer.addMoney(Config.SellPrice)
               end)
-                TriggerClientEvent('okokNotify:Alert', src, "Storage", "You sold the unit", 10000, 'info')
+                TriggerClientEvent("swt_notifications:Success",source,'success','You sold the unit','top',8000,true)
+
     end)
 end)
 
