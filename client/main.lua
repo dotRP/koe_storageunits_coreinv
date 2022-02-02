@@ -151,7 +151,12 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
           TriggerServerEvent('koe_storageunits:pinChange', storageID,keyboard2[1].input)
     end
         else
-		   exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
+            if Config.Swt then
+		        exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
+            end
+            if Config.Okok then
+                exports['okokNotify']:Alert("Storage Units", "You have entered the wrong pin.", 8000, 'error')
+            end
         end
     end, storageID,keyboard[1].input)
     end
@@ -214,7 +219,12 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
         if pin then
            TriggerServerEvent('koe_storageunits:registerStash', storageID)
         else
-		   exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
+            if Config.Swt then
+		        exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
+            end
+            if Config.Okok then
+                exports['okokNotify']:Alert("Storage Units", "You have entered the wrong pin.", 8000, 'error')
+            end
         end
     end, storageID,keyboard[1].input)
     end
@@ -296,10 +306,20 @@ AddEventHandler('koe_storageunits:policeBreach', function(data)
     end  
     for k, v in pairs(Config.Policeraid.Jobs) do
         if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade < v.grade then
-            exports['swt_notifications']:Negative('error','Not a high enough rank to do that.','top',8000,true)
+            if Config.Swt then 
+                exports['swt_notifications']:Negative('error','Not a high enough rank to do that.','top',8000,true)
+            end
+            if Config.Okok then
+                exports['okokNotify']:Alert("Storage Units", "Not a high enough rank to do that.", 8000, 'error')
+            end
         end
     end 
     if ESX.PlayerData.job.name ~= 'police' then
-        exports['swt_notifications']:Negative('error','You cant do that, youre not a cop.','top',8000,true)
+        if Config.Swt then
+            exports['swt_notifications']:Negative('error','You cant do that, youre not a cop.','top',8000,true)
+        end
+        if Config.Okok then
+            exports['okokNotify']:Alert("Storage Units", "You cant do that, youre not a cop.", 8000, 'error')
+        end
     end  
 end)
