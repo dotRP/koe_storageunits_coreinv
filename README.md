@@ -25,7 +25,7 @@ add the sql file included to your database.
 - <a href='https://github.com/overextended/qtarget'>qtarget</a>(Or bt-target)
 - <a href='https://github.com/overextended/ox_inventory'>ox_inventory</a>
 - <a href='https://github.com/nerohiro/nh-context'>nh-context</a>
-- <a href='https://forum.cfx.re/t/okoknotify-standalone-paid/3907758'>okokNotify</a>(Optional)
+- <a href='https://github.com/Switty6/swt_notifications'>swt_notifications</a>(Optional)
 
 ---
 
