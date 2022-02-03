@@ -28,8 +28,8 @@ add the sql file included to your database.
 - <a href='https://github.com/nerohiro/nh-context'>nh-context</a>
 - <a href='https://forum.cfx.re/t/okoknotify-standalone-paid/3907758'>okokNotify</a>(Optional)(Paid)
 - <a href='https://github.com/Switty6/swt_notifications'>swt_notifications</a>(Optional)(Free)
+- - <a href='https://github.com/nerohiro/nh-keyboards'>nh-keyboard</a>(Optional)(Free)
 
----
 
 <h2 align='center'>Creators</h2>
 <b>This script was created by Dalkoe and additional features added by serraz</b>
