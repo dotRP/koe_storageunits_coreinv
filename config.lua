@@ -10,7 +10,7 @@ Config = {
 
 Config.UnitPrice    = 200000                            ---Price of the units to buy
 Config.SellPrice    = 150000                            ---Price of the unit when sold 
-Config.Notify 		= 'esx'							--- 'okok' for okokNotify(paid), 'swt' for swt_notifications(free), 'esx' Default esx notify
+Config.Notify 		= 'okok'							--- 'okok' for okokNotify(paid), 'swt' for swt_notifications(free), 'esx' Default esx notify
 
 Config.Storages = {
 

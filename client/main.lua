@@ -344,12 +344,12 @@ end)
 
 
 RegisterNetEvent('koe_storageunits:policeBreach')
-AddEventHandler('koe_storageunits:policeBreach', function(data)
-
+AddEventHandler('koe_storageunits:policeBreach', function(storageID)
+    
     for k, v in pairs(Config.Policeraid.Jobs) do
         if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade >= v.grade then
-            TriggerServerEvent('koe_storageunits:registerStash', storageID)
-            TriggerServerEvent('koe_storageunits:breachLog', storageID)
+            TriggerServerEvent('koe_storageunits:registerStash', storageID.id)
+            TriggerServerEvent('koe_storageunits:breachLog', storageID.id)
         end
     end  
     for k, v in pairs(Config.Policeraid.Jobs) do
