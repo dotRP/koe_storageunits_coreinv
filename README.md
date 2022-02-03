@@ -10,11 +10,11 @@ You can create a pin number for the unit you own and share it with friends so ev
 <h2 align='center'>Install</h2>
 Setup your channel to log the breaches, in the server.lua paste the webhook url into the url at the top of the lua.
 
-Put trono_storageunits and nh-context in your resource folder 
+Put koe_storageunits in your resource folder 
 
 add this to your cfg. 
 
-start trono_storageunits
+start koe_storageunits
 
 add the sql file included to your database. 
 
