@@ -119,6 +119,11 @@ AddEventHandler('koe_storageunits:buyStorage', function(data)
 
         if keyboard ~= nil then
             TriggerServerEvent('koe_storageunits:buyUnit', storageID,keyboard[1].input)
+            if Config.Swt then
+                exports['swt_notifications']:Success('success','Unit purchased!','top',8000,true)
+            elseif Config.Okok then
+                exports['okokNotify']:Alert("Storage Units", "Unit purchased!", 8000, 'success')
+            end
         end
     else
         if Config.Swt then
@@ -128,6 +133,7 @@ AddEventHandler('koe_storageunits:buyStorage', function(data)
         end
     end
 end)
+
 
 RegisterNetEvent('koe_storageunits:changePin')
 AddEventHandler('koe_storageunits:changePin', function(data)
@@ -158,6 +164,13 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
 
     if keyboard2 ~= nil then
           TriggerServerEvent('koe_storageunits:pinChange', storageID,keyboard2[1].input)
+          if Config.Swt then
+            exports['swt_notifications']:Success('success','Your pin was changed!','top',8000,true)
+        end
+        if Config.Okok then
+            exports['okokNotify']:Alert("Storage Units", "Your pin was changed!", 8000, 'success')
+        end
+          
     end
         else
             if Config.Swt then
@@ -229,7 +242,7 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
            TriggerServerEvent('koe_storageunits:registerStash', storageID)
         else
             if Config.Swt then
-		        exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
+		        exports['swt_notifications']:Negative('error','You have entered the wrong pin.','top',8000,true)
             end
             if Config.Okok then
                 exports['okokNotify']:Alert("Storage Units", "You have entered the wrong pin.", 8000, 'error')
@@ -280,6 +293,12 @@ end)
 RegisterNetEvent('koe_storageunits:storageSell')
 AddEventHandler('koe_storageunits:storageSell', function()
     TriggerServerEvent('koe_storageunits:sellUnit', storageID)
+    if Config.Swt then
+        exports['swt_notifications']:Success('success','You sold the unit!','top',8000,true)
+    end
+    if Config.Okok then
+        exports['okokNotify']:Alert("Storage Units", "You sold the unit!", 8000, 'success')
+    end
 end)
 
 --If the storage IS owned but not by you this menu pops up

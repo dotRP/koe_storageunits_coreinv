@@ -74,12 +74,6 @@ AddEventHandler('koe_storageunits:buyUnit', function(storageID,pin)
               end)
                MySQL.Async.fetchAll("UPDATE storageunits SET pin = @pin WHERE id =@id",{['@pin']  = pin, ['@id'] = storageID}, function(result)
               end)
-              if Config.Swt then
-                TriggerClientEvent("swt_notifications:Success",source,'success','You now own this storage unit','top',8000,true)
-              end
-              if Config.Okok then
-                TriggerClientEvent('okokNotify:Alert', source, "Storage Units", "You now own this storage unit", 8000, 'success')
-              end
             end
 
     end) 
@@ -100,13 +94,6 @@ AddEventHandler('koe_storageunits:sellUnit', function(storageID)
               MySQL.Async.fetchAll("UPDATE storageunits SET identifier = @identifier, pin = @pin WHERE id =@id",{['@identifier']  = identifier, ['@id'] = storageID, ['@pin'] = pin}, function(result)
                 xPlayer.addMoney(Config.SellPrice)
               end)
-                if Config.Swt then
-                  TriggerClientEvent("swt_notifications:Success",source,'success','You sold the unit','top',8000,true)
-                end
-                if Config.Okok then
-                  TriggerClientEvent('okokNotify:Alert', source, "Storage Units", "You sold the unit", 8000, 'success')
-                end
-
     end)
 end)
 
