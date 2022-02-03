@@ -14,7 +14,6 @@ Put trono_storageunits and nh-context in your resource folder
 
 add this to your cfg. 
 
-start nh-context
 start trono_storageunits
 
 add the sql file included to your database. 
