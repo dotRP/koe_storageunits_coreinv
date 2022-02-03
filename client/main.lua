@@ -103,6 +103,9 @@ end)
 
 RegisterNetEvent('koe_storageunits:buyStorage')
 AddEventHandler('koe_storageunits:buyStorage', function(data)
+    local ox_inventory = exports.ox_inventory
+    local count = ox_inventory:Search(2, 'money')
+if count >= Config.UnitPrice then
 local keyboard = exports["nh-keyboard"]:KeyboardInput({
     header = "Create a Pin for your storage", 
     rows = {
@@ -117,7 +120,13 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
     if keyboard ~= nil then
           TriggerServerEvent('koe_storageunits:buyUnit', storageID,keyboard[1].input)
     end
-
+else
+  if Config.Swt then
+    exports['swt_notifications']:Negative('error','Not enough money','top',8000,true)
+  elseif Config.Okok then
+    TriggerClientEvent('okokNotify:Alert', source, "Storage Units", "Not enough money", 8000, 'error')
+  end
+end
 end)
 
 RegisterNetEvent('koe_storageunits:changePin')
