@@ -1,5 +1,5 @@
 discord = {
-  ['webhook'] = 'https://discord.com/api/webhooks/937423044564107324/XrkY9TIRjZ1uKlEX9PfVQA2I60ZQhad4ktm7-p04BPhWIipJ8-i1yzFL68BRoqJ2KAw7',  ---PUT YOUR WEBHOOK URL HERE
+  ['webhook'] = '',  ---PUT YOUR WEBHOOK URL HERE
   ['name'] = 'Storage Units'
 }
 
