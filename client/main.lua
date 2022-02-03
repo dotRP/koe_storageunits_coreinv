@@ -57,7 +57,7 @@ Citizen.CreateThread(function()
 			{
 				event = "koe_storageunits:checkOwned",
 				icon = "fas fa-warehouse",
-				label = "Open " .. storageName,
+				label = "Open Storage Unit " .. storageid,
 				id = storageid,
 			},
             {
