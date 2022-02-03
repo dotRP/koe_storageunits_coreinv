@@ -8,10 +8,9 @@ Config = {
 }
 
 
-Config.UnitPrice      = 200000                              ---Price of the units to buy
-Config.SellPrice      = 150000                              ---Price of the unit when sold 
-Config.Swt            = false								---If youre using swt_notifications(https://github.com/Switty6/swt_notifications) FREE
-Config.Okok           = true								---If youre using okokNotify(https://forum.cfx.re/t/okoknotify-standalone-paid/3907758) PAID
+Config.UnitPrice    = 200000                            ---Price of the units to buy
+Config.SellPrice    = 150000                            ---Price of the unit when sold 
+Config.Notify 		= 'esx'							--- 'okok' for okokNotify(paid), 'swt' for swt_notifications(free), 'esx' Default esx notify
 
 Config.Storages = {
 

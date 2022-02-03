@@ -119,17 +119,25 @@ AddEventHandler('koe_storageunits:buyStorage', function(data)
 
         if keyboard ~= nil then
             TriggerServerEvent('koe_storageunits:buyUnit', storageID,keyboard[1].input)
-            if Config.Swt then
+            if Config.Notify == 'swt' then
                 exports['swt_notifications']:Success('success','Unit purchased!','top',8000,true)
-            elseif Config.Okok then
+            end
+            if Config.Notify == 'okok' then
                 exports['okokNotify']:Alert("Storage Units", "Unit purchased!", 8000, 'success')
+            end
+            if Config.Notify == 'esx' then
+                ESX.ShowNotification('Unit purchased!')
             end
         end
     else
-        if Config.Swt then
+        if Config.Notify == 'swt' then
             exports['swt_notifications']:Negative('error','Not enough money','top',8000,true)
-        elseif Config.Okok then
+        end
+        if Config.Notify == 'okok' then
             exports['okokNotify']:Alert("Storage Units", "Not enough money", 8000, 'error')
+        end
+        if Config.Notify == 'esx' then
+            ESX.ShowNotification('Not enough money')
         end
     end
 end)
@@ -163,21 +171,27 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
 })
 
     if keyboard2 ~= nil then
-          TriggerServerEvent('koe_storageunits:pinChange', storageID,keyboard2[1].input)
-          if Config.Swt then
+        TriggerServerEvent('koe_storageunits:pinChange', storageID,keyboard2[1].input)
+        if Config.Notify == 'swt' then
             exports['swt_notifications']:Success('success','Your pin was changed!','top',8000,true)
         end
-        if Config.Okok then
+        if Config.Notify == 'okok' then
             exports['okokNotify']:Alert("Storage Units", "Your pin was changed!", 8000, 'success')
+        end
+        if Config.Notify == 'esx' then
+            ESX.ShowNotification('Your pin was changed!')
         end
           
     end
         else
-            if Config.Swt then
+            if Config.Notify == 'swt' then
 		        exports['swt_notifications']:Negative('error','You have entered the wrong pin. ','top',8000,true)
             end
-            if Config.Okok then
+            if Config.Notify == 'okok' then
                 exports['okokNotify']:Alert("Storage Units", "You have entered the wrong pin.", 8000, 'error')
+            end
+            if Config.Notify == 'esx' then
+                ESX.ShowNotification('You have entered the wrong pin.')
             end
         end
     end, storageID,keyboard[1].input)
@@ -241,11 +255,14 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
         if pin then
            TriggerServerEvent('koe_storageunits:registerStash', storageID)
         else
-            if Config.Swt then
+            if Config.Notify == 'swt' then
 		        exports['swt_notifications']:Negative('error','You have entered the wrong pin.','top',8000,true)
             end
-            if Config.Okok then
+            if Config.Notify == 'okok' then
                 exports['okokNotify']:Alert("Storage Units", "You have entered the wrong pin.", 8000, 'error')
+            end
+            if Config.Notify == 'esx' then
+                ESX.ShowNotification('You have entered the wrong pin.')
             end
         end
     end, storageID,keyboard[1].input)
@@ -293,11 +310,14 @@ end)
 RegisterNetEvent('koe_storageunits:storageSell')
 AddEventHandler('koe_storageunits:storageSell', function()
     TriggerServerEvent('koe_storageunits:sellUnit', storageID)
-    if Config.Swt then
+    if Config.Notify == 'swt' then
         exports['swt_notifications']:Success('success','You sold the unit!','top',8000,true)
     end
-    if Config.Okok then
+    if Config.Notify == 'okok' then
         exports['okokNotify']:Alert("Storage Units", "You sold the unit!", 8000, 'success')
+    end
+    if Config.Notify == 'esx' then
+        ESX.ShowNotification('You sold the unit!')
     end
 end)
 
@@ -334,20 +354,26 @@ AddEventHandler('koe_storageunits:policeBreach', function(data)
     end  
     for k, v in pairs(Config.Policeraid.Jobs) do
         if v.job == ESX.PlayerData.job.name and ESX.PlayerData.job.grade < v.grade then
-            if Config.Swt then 
+            if Config.Notify == 'swt' then 
                 exports['swt_notifications']:Negative('error','Not a high enough rank to do that.','top',8000,true)
             end
-            if Config.Okok then
+            if Config.Notify == 'okok' then
                 exports['okokNotify']:Alert("Storage Units", "Not a high enough rank to do that.", 8000, 'error')
+            end
+            if Config.Notify == 'esx' then
+                ESX.ShowNotification('Not a high enough rank to do that.')
             end
         end
     end 
     if ESX.PlayerData.job.name ~= 'police' then
-        if Config.Swt then
+        if Config.Notify == 'swt' then
             exports['swt_notifications']:Negative('error','You cant do that, youre not a cop.','top',8000,true)
         end
-        if Config.Okok then
+        if Config.Notify == 'okok' then
             exports['okokNotify']:Alert("Storage Units", "You cant do that, youre not a cop.", 8000, 'error')
+        end
+        if Config.Notify == 'esx' then
+            ESX.ShowNotification('You cant do that, youre not a cop.')
         end
     end  
 end)
