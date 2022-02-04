@@ -59,6 +59,10 @@ Citizen.CreateThread(function()
 				icon = "fas fa-warehouse",
 				label = "Open Storage Unit " .. storageid,
 				id = storageid,
+                canInteract = function()
+                    local player = PlayerPedId()
+                    return IsPedOnFoot(player)
+                end,
 			},
             {
 				event = "koe_storageunits:policeBreach",
@@ -66,6 +70,10 @@ Citizen.CreateThread(function()
 				label = "Breach the unit",
 				id = storageid,
                 job = 'police', 
+                canInteract = function()
+                    local player = PlayerPedId()
+                    return IsPedOnFoot(player)
+                end,
             },
 		},
 		distance = 2.5
