@@ -14,7 +14,7 @@ Config.Notify 		= 'okok'							--- 'okok' for okokNotify(paid), 'swt' for swt_no
 
 --Add your locations below! This uses qtarget. Make sure the ID is in order and its also in the database when you add a new unit. 
 Config.Storages = {
-	--9043
+	--9043 is the postal if you use postals map
 	{ name = 'storageunit1', id = 1, coords = vector3(-73.26, -1196.35, 27.66), bt_length = 2, bt_width = 5.4, bt_minZ = 25.86, bt_maxZ = 29.86, bt_heading = 0 },
 	{ name = 'storageunit2', id = 2, coords = vector3(-66.61, -1198.67, 27.74), bt_length = 2, bt_width = 5.4, bt_minZ = 25.94, bt_maxZ = 29.94, bt_heading = 314 },
 	{ name = 'storageunit3', id = 3, coords = vector3(-60.88, -1204.31, 27.79), bt_length = 2, bt_width = 5.4, bt_minZ = 25.99, bt_maxZ = 29.99, bt_heading = 313 },
@@ -29,7 +29,7 @@ Config.Storages = {
 	{ name = 'storageunit12', id = 12, coords = vector3(-66.55, -1212.4, 28.31), bt_length = 2, bt_width = 5.4, bt_minZ = 26.51, bt_maxZ = 30.51, bt_heading = 316 },
 	{ name = 'storageunit13', id = 13, coords = vector3(-71.74, -1207.16, 27.89), bt_length = 2, bt_width = 5.4, bt_minZ = 25.94, bt_maxZ = 29.94, bt_heading = 316 },
 	{ name = 'storageunit14', id = 14, coords = vector3(-78.6, -1205.21, 27.63), bt_length = 2, bt_width = 5.4, bt_minZ = 25.94, bt_maxZ = 29.94, bt_heading = 0 },
-	--9386
+	--9386 is the postal if you use postals map
 	{ name = 'storageunit15', id = 15, coords = vector3(1722.26, -1545.74, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
 	{ name = 'storageunit16', id = 16, coords = vector3(1725.99, -1534.33, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
 	{ name = 'storageunit17', id = 17, coords = vector3(1729.97, -1522.98, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
@@ -42,7 +42,7 @@ Config.Storages = {
 	{ name = 'storageunit24', id = 24, coords = vector3(1707.48, -1515.4, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
 	{ name = 'storageunit25', id = 25, coords = vector3(1703.6, -1526.7, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
 	{ name = 'storageunit26', id = 26, coords = vector3(1699.71, -1538.06, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
-	--3030
+	--3030 is the postal if you use postals map
 	{ name = 'storageunit27', id = 27, coords = vector3(913.98, 3562.73, 33.8), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
 	{ name = 'storageunit28', id = 28, coords = vector3(913.99, 3567.38, 33.78), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
 
