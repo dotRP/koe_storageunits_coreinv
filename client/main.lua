@@ -112,19 +112,14 @@ AddEventHandler('koe_storageunits:buyStorage', function(data)
     local ox_inventory = exports.ox_inventory
     local count = ox_inventory:Search(2, 'money')
     if count >= Config.UnitPrice then
-        local keyboard = exports["nh-keyboard"]:KeyboardInput({
+        local keyboard, input = exports["nh-keyboard"]:Keyboard({
             header = "Create a Pin for your storage", 
-            rows = {
-                {
-                    id = 0, 
-                    txt = "Pin for storage"
-                },
-            
-            }
+            rows = {"Pin for storage"}
+
         })
 
         if keyboard ~= nil then
-            TriggerServerEvent('koe_storageunits:buyUnit', storageID,keyboard[1].input)
+            TriggerServerEvent('koe_storageunits:buyUnit', storageID,input)
             if Config.Notify == 'swt' then
                 exports['swt_notifications']:Success('success','Unit purchased!','top',8000,true)
             end
@@ -151,33 +146,21 @@ end)
 
 RegisterNetEvent('koe_storageunits:changePin')
 AddEventHandler('koe_storageunits:changePin', function(data)
-local keyboard = exports["nh-keyboard"]:KeyboardInput({
+local keyboard, input = exports["nh-keyboard"]:Keyboard({
     header = "Enter the pin for your storage", 
-    rows = {
-        {
-            id = 0, 
-            txt = "Pin for storage"
-        },
-      
-    }
+    rows = {"Pin for Storage"}
 })
 
     if keyboard ~= nil then
            ESX.TriggerServerCallback('koe_storageunits:checkPin', function(pin)
         if pin then
-           local keyboard2 = exports["nh-keyboard"]:KeyboardInput({
+           local keyboard2, input = exports["nh-keyboard"]:Keyboard({
     header = "Create a new Pin for the storage", 
-    rows = {
-        {
-            id = 0, 
-            txt = "Pin for storage"
-        },
-      
-    }
+    rows = {"Pin for Storage"}
 })
 
     if keyboard2 ~= nil then
-        TriggerServerEvent('koe_storageunits:pinChange', storageID,keyboard2[1].input)
+        TriggerServerEvent('koe_storageunits:pinChange', storageID,input)
         if Config.Notify == 'swt' then
             exports['swt_notifications']:Success('success','Your pin was changed!','top',8000,true)
         end
@@ -200,7 +183,7 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
                 ESX.ShowNotification('You have entered the wrong pin.')
             end
         end
-    end, storageID,keyboard[1].input)
+    end, storageID,input)
     end
 
 end)
@@ -234,15 +217,9 @@ end)
 
 RegisterNetEvent('koe_storageunits:registerStash')
 AddEventHandler('koe_storageunits:registerStash', function(data)
-local keyboard = exports["nh-keyboard"]:KeyboardInput({
+local keyboard, input = exports["nh-keyboard"]:Keyboard({
     header = "Enter the pin for your storage", 
-    rows = {
-        {
-            id = 0, 
-            txt = "Pin for storage"
-        },
-      
-    }
+    rows = {"Pin for Storage"}
 })
 
     if keyboard ~= nil then
@@ -260,7 +237,7 @@ local keyboard = exports["nh-keyboard"]:KeyboardInput({
                 ESX.ShowNotification('You have entered the wrong pin.')
             end
         end
-    end, storageID,keyboard[1].input)
+    end, storageID,input)
     end
 end)
 
