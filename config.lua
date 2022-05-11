@@ -12,6 +12,7 @@ Config.UnitPrice    = 200000                            ---Price of the units to
 Config.SellPrice    = 150000                            ---Price of the unit when sold 
 Config.Notify 		= 'okok'							--- 'okok' for okokNotify(paid), 'swt' for swt_notifications(free), 'esx' Default esx notify
 
+--Add your locations below! This uses qtarget. Make sure the ID is in order and its also in the database when you add a new unit. 
 Config.Storages = {
 	--9043
 	{ name = 'storageunit1', id = 1, coords = vector3(-73.26, -1196.35, 27.66), bt_length = 2, bt_width = 5.4, bt_minZ = 25.86, bt_maxZ = 29.86, bt_heading = 0 },
@@ -42,8 +43,8 @@ Config.Storages = {
 	{ name = 'storageunit25', id = 25, coords = vector3(1703.6, -1526.7, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
 	{ name = 'storageunit26', id = 26, coords = vector3(1699.71, -1538.06, 113.95), bt_length = 2, bt_width = 4.4, bt_minZ = 112.35, bt_maxZ = 116.35, bt_heading = 250 },
 	--3030
-	{ name = 'storageunit26', id = 27, coords = vector3(913.98, 3562.73, 33.8), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
-	{ name = 'storageunit26', id = 28, coords = vector3(913.99, 3567.38, 33.78), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
+	{ name = 'storageunit27', id = 27, coords = vector3(913.98, 3562.73, 33.8), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
+	{ name = 'storageunit28', id = 28, coords = vector3(913.99, 3567.38, 33.78), bt_length = 2, bt_width = 4.4, bt_minZ = 31.58, bt_maxZ = 35.58, bt_heading = 269 },
 
 	
 }
