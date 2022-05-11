@@ -92,19 +92,17 @@ end)
 --If the storage is NOT owned this menu pops up
 RegisterNetEvent('koe_storageunits:buyMenu')
 AddEventHandler('koe_storageunits:buyMenu',function(storageID)
-TriggerEvent('nh-context:sendMenu', {
+
+    TriggerEvent("nh-context:createMenu", {
         {
             header = "Storage Units",
-            txt = "",
         },
         {
-            header = "Purchase Storage Unit",
-            txt = 'Purchase this unit for $' ..Config.UnitPrice,
-            params = {
-                event = 'koe_storageunits:buyStorage',
-            }
+            header = "Purchase Unit",
+            context = 'Purchase this unit for $' ..Config.UnitPrice,
+            event = "koe_storageunits:buyStorage",
+            image = Config.Logo
         }
-
     })
 
 end)
@@ -212,36 +210,25 @@ end)
 RegisterNetEvent('koe_storageunits:ownerMenu')
 AddEventHandler('koe_storageunits:ownerMenu',function(storageID)
 
-TriggerEvent('nh-context:sendMenu', {
+    TriggerEvent("nh-context:createMenu", {
         {
             header = "Storage Management",
-            txt = "",
         },
-        {   
-            id = 50,
-            header = "Storage Unit",
-            txt = "Open Storage",
-            params = {
-                event = 'koe_storageunits:registerStash',
-            }
-        },
-        {   
-            id = 51,
-            header = "Pin Management",
-            txt = "Change Pin",
-            params = {
-                event = 'koe_storageunits:changePin',
-            }
-        }, 
         {
-            id = 52,
+            header = "Storage Unit",
+            context = "Open Storage",
+            event = "koe_storageunits:registerStash"
+        },
+        {
+            header = "Pin Management",
+            context = "Change Pin",
+            event = "koe_storageunits:changePin"
+        },
+        {
             header = "Sell this storage unit",
-            txt = "Sell the storage unit",
-            params = {
-                event = 'koe_storageunits:sellConfirm',
-            }
+            context = "Sell the storage unit",
+            event = "koe_storageunits:sellConfirm"
         }
-
     })
 end)
 
@@ -295,23 +282,16 @@ end
 RegisterNetEvent('koe_storageunits:sellConfirm')
 AddEventHandler('koe_storageunits:sellConfirm',function(storageID)
 
-TriggerEvent('nh-context:sendMenu', {
-        {   id = 1,
+    TriggerEvent("nh-context:createMenu", {
+        {
             header = "< Go Back",
-            txt = "",
-            params = {
-                event = 'koe_storageunits:ownerMenu',
-            }
+            event = "koe_storageunits:ownerMenu"
         },
         {
-            id = 2,
             header = "SELL",
-            txt = "Click to sell the unit",
-            params = {
-                event = 'koe_storageunits:storageSell',
-            }
+            context = "Click to sell the unit",
+            event = "koe_storageunits:storageSell"
         }
-
     })
 end)
 
@@ -333,21 +313,16 @@ end)
 RegisterNetEvent('koe_storageunits:otherMenu')
 AddEventHandler('koe_storageunits:otherMenu',function(storageID)
 
-TriggerEvent('nh-context:sendMenu', {
+    TriggerEvent("nh-context:createMenu", {
         {
             header = "Owned Storage",
-            txt = "",
         },
-        {   
+        {
             header = "Storage Unit",
-            txt = "Open Storage",
-            params = {
-                event = 'koe_storageunits:registerStash',
-            }
-        },
-
+            context = "Open Storage",
+            event = "koe_storageunits:registerStash"
+        }
     })
-
 end)
 
 
