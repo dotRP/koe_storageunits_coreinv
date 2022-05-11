@@ -1,7 +1,7 @@
 <h2 align='center'>Information</h2>
 
 Simple storage unit script, buy/sell a storage unit to keep items safe, simple animation when using the storage, options to set buy price, sell price, police name and minimum grade. Also define units in the config using qtarget(bt-target) polyzones.
-You can create a pin number for the unit you own and share it with friends so everyone with the pin has access. The pin can also be changed. (Thank you serraz)
+You can create a pin number for the unit you own and share it with friends so everyone with the pin has access. The pin can also be changed. (Thank you serraz)!
 
 <h3 align='center'><b><a href='https://www.youtube.com/watch?v=YBfCSqCfmT0'>Demonstration Video</a></b></h3>
 
