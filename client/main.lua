@@ -92,18 +92,19 @@ end)
 --If the storage is NOT owned this menu pops up
 RegisterNetEvent('koe_storageunits:buyMenu')
 AddEventHandler('koe_storageunits:buyMenu',function(storageID)
-
-    TriggerEvent("nh-context:createMenu", {
-        {
-            header = "Storage Units",
-        },
-        {
-            header = "Purchase Unit",
-            context = 'Purchase this unit for $' ..Config.UnitPrice,
-            event = "koe_storageunits:buyStorage",
-            image = Config.Logo
+    lib.registerContext({
+        id = 'buymenu',
+        title = 'Storage Units',
+        options = {
+            ['Purchase Unit'] = {
+                description = 'Purchase this unit for $' ..Config.UnitPrice,
+                arrow = true,
+                event = 'koe_storageunits:buyStorage',
+                metadata = {'Purchase with cash'}
+            }
         }
     })
+    lib.showContext('buymenu')
 
 end)
 
@@ -112,14 +113,15 @@ AddEventHandler('koe_storageunits:buyStorage', function(data)
     local ox_inventory = exports.ox_inventory
     local count = ox_inventory:Search(2, 'money')
     if count >= Config.UnitPrice then
-        local keyboard, input = exports["nh-keyboard"]:Keyboard({
-            header = "Create a Pin for your storage", 
-            rows = {"Pin for storage"}
 
+        local input = lib.inputDialog('Enter a Pin number', {
+            { type = "input", label = "UNIT PIN", password = true, icon = 'lock' },
         })
 
-        if keyboard ~= nil then
-            TriggerServerEvent('koe_storageunits:buyUnit', storageID,input)
+        if input then
+            local pin = input[1]
+
+            TriggerServerEvent('koe_storageunits:buyUnit', storageID, pin)
             if Config.Notify == 'swt' then
                 exports['swt_notifications']:Success('success','Unit purchased!','top',8000,true)
             end
@@ -141,26 +143,25 @@ AddEventHandler('koe_storageunits:buyStorage', function(data)
             ESX.ShowNotification('Not enough money')
         end
     end
+
+    
 end)
 
 
 RegisterNetEvent('koe_storageunits:changePin')
 AddEventHandler('koe_storageunits:changePin', function(data)
-local keyboard, input = exports["nh-keyboard"]:Keyboard({
-    header = "Enter the pin for your storage", 
-    rows = {"Pin for Storage"}
-})
-
-    if keyboard ~= nil then
+    local keyboard = lib.inputDialog('Enter your current PIN', {
+        { type = "input", label = "Unit PIN", password = true, icon = 'lock' },
+    })
+    if keyboard[1] ~= nil then
            ESX.TriggerServerCallback('koe_storageunits:checkPin', function(pin)
         if pin then
-           local keyboard2, input = exports["nh-keyboard"]:Keyboard({
-    header = "Create a new Pin for the storage", 
-    rows = {"Pin for Storage"}
-})
+            local keyboard2 = lib.inputDialog('Enter a NEW PIN', {
+                { type = "input", label = "NEW PIN", password = true, icon = 'lock' },
+            })
 
-    if keyboard2 ~= nil then
-        TriggerServerEvent('koe_storageunits:pinChange', storageID,input)
+    if keyboard2[1] ~= nil then
+        TriggerServerEvent('koe_storageunits:pinChange', storageID,keyboard2[1])
         if Config.Notify == 'swt' then
             exports['swt_notifications']:Success('success','Your pin was changed!','top',8000,true)
         end
@@ -183,7 +184,7 @@ local keyboard, input = exports["nh-keyboard"]:Keyboard({
                 ESX.ShowNotification('You have entered the wrong pin.')
             end
         end
-    end, storageID,input)
+    end, storageID,keyboard[1])
     end
 
 end)
@@ -193,36 +194,40 @@ end)
 RegisterNetEvent('koe_storageunits:ownerMenu')
 AddEventHandler('koe_storageunits:ownerMenu',function(storageID)
 
-    TriggerEvent("nh-context:createMenu", {
-        {
-            header = "Storage Management",
-        },
-        {
-            header = "Storage Unit",
-            context = "Open Storage",
-            event = "koe_storageunits:registerStash"
-        },
-        {
-            header = "Pin Management",
-            context = "Change Pin",
-            event = "koe_storageunits:changePin"
-        },
-        {
-            header = "Sell this storage unit",
-            context = "Sell the storage unit",
-            event = "koe_storageunits:sellConfirm"
+    lib.registerContext({
+        id = 'ownermenu',
+        title = 'Storage Management',
+        options = {
+            ['Open Storage'] = {
+                description = 'Open your storage unit',
+                arrow = true,
+                event = 'koe_storageunits:registerStash',
+                metadata = {'Open this unit'}
+            },
+            ['Pin Management'] = {
+                description = 'Change your Pin',
+                arrow = true,
+                event = 'koe_storageunits:changePin',
+                metadata = {'You will enter current pin to change it.'}
+            },
+            ['Sell this unit'] = {
+                description = 'Put the unit back on the market',
+                arrow = true,
+                event = 'koe_storageunits:sellConfirm',
+                metadata = {'This will take you to another menu to sell the unit'}
+            },
         }
     })
+    lib.showContext('ownermenu')
 end)
 
 RegisterNetEvent('koe_storageunits:registerStash')
 AddEventHandler('koe_storageunits:registerStash', function(data)
-local keyboard, input = exports["nh-keyboard"]:Keyboard({
-    header = "Enter the pin for your storage", 
-    rows = {"Pin for Storage"}
-})
+    local keyboard = lib.inputDialog('Enter your current PIN', {
+        { type = "input", label = "Unit PIN", password = true, icon = 'lock' },
+    })
 
-    if keyboard ~= nil then
+    if keyboard[1] then
            ESX.TriggerServerCallback('koe_storageunits:checkPin', function(pin)
         if pin then
            TriggerServerEvent('koe_storageunits:registerStash', storageID)
@@ -237,7 +242,7 @@ local keyboard, input = exports["nh-keyboard"]:Keyboard({
                 ESX.ShowNotification('You have entered the wrong pin.')
             end
         end
-    end, storageID,input)
+    end, storageID,keyboard[1])
     end
 end)
 
@@ -259,17 +264,24 @@ end
 RegisterNetEvent('koe_storageunits:sellConfirm')
 AddEventHandler('koe_storageunits:sellConfirm',function(storageID)
 
-    TriggerEvent("nh-context:createMenu", {
-        {
-            header = "< Go Back",
-            event = "koe_storageunits:ownerMenu"
-        },
-        {
-            header = "SELL",
-            context = "Click to sell the unit",
-            event = "koe_storageunits:storageSell"
+    lib.registerContext({
+        id = 'sellmenu',
+        title = 'Sell Unit',
+        options = {
+            ['Go Back'] = {
+                description = 'Go back to the other menu',
+                event = 'koe_storageunits:ownerMenu',
+                metadata = {'This will take you back'}
+            },
+            ['Sell Unit'] = {
+                description = 'Sell the unit',
+                arrow = true,
+                event = 'koe_storageunits:storageSell',
+                metadata = {'This will sell the unit!'}
+            },
         }
     })
+    lib.showContext('sellmenu')
 end)
 
 RegisterNetEvent('koe_storageunits:storageSell')
@@ -290,16 +302,18 @@ end)
 RegisterNetEvent('koe_storageunits:otherMenu')
 AddEventHandler('koe_storageunits:otherMenu',function(storageID)
 
-    TriggerEvent("nh-context:createMenu", {
-        {
-            header = "Owned Storage",
-        },
-        {
-            header = "Storage Unit",
-            context = "Open Storage",
-            event = "koe_storageunits:registerStash"
+    lib.registerContext({
+        id = 'othermenu',
+        title = 'Owned Storage',
+        options = {
+            ['Open Storage Unit'] = {
+                description = 'Open unit with pin',
+                event = 'koe_storageunits:registerStash'
+            }
         }
     })
+    lib.showContext('othermenu')
+
 end)
 
 
