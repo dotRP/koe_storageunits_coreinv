@@ -1,4 +1,4 @@
-# Koe_Towing:
+# Koe_StorageUnits:
 Simple storage unit script, buy/sell a storage unit to keep items safe, simple animation when using the storage, options to set buy price, sell price, police name and minimum grade. Also define units in the config using qtarget(bt-target) polyzones.
 You can create a pin number for the unit you own and share it with friends so everyone with the pin has access. The pin can also be changed. (Thank you serraz)
 
@@ -7,8 +7,9 @@ You can create a pin number for the unit you own and share it with friends so ev
 [![Koe Scripts Discord](https://media.discordapp.net/attachments/973750342263144558/1003740741178249318/invite.png?width=810&height=216)](https://discord.gg/5JuxDnNm94)
 
 # Features:
-* Mark cars for tow
-* Tow menu for tow employees to see all cars available. 
+* Buy Storage Units
+* Password system
+* Police breaching with discord logging
 
 # Dependencies:
 * [qTarget](https://github.com/overextended/qtarget)
