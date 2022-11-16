@@ -2,7 +2,7 @@ fx_version 'adamant'
 
 game 'gta5'
 
-version '1.0.2'
+version '1.1.1'
 lua54 'yes'
 
 client_scripts {
