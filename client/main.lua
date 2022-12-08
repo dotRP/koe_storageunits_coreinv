@@ -127,8 +127,9 @@ end)
 
 RegisterNetEvent('koe_storageunits:buyStorage')
 AddEventHandler('koe_storageunits:buyStorage', function(data)
-    local ox_inventory = exports.ox_inventory
-    local count = ox_inventory:Search(2, 'money')
+    -- local ox_inventory = exports.ox_inventory
+    -- local count = ox_inventory:Search(2, 'money')
+    --TODO FIX PAYMENTS
     if count >= Config.UnitPrice then
 
         local input = lib.inputDialog('Enter a Pin number', {
@@ -265,7 +266,10 @@ end)
 
 RegisterNetEvent('koe_storageunits:openStash')
 AddEventHandler('koe_storageunits:openStash', function(stashID)
-    TriggerEvent('ox_inventory:openInventory', 'stash', stashID)
+    local str = string.match(stashID , "%d+")
+	print(str)
+    local StashName = "koe_storageunits"..str
+    TriggerServerEvent('core_inventory:server:openInventory', StashName, "koe_stash", 20, 20)
     Wait(2000)
     LoadAnimDict('anim@gangops@facility@servers@bodysearch@')
     TaskPlayAnim(PlayerPedId(), "anim@gangops@facility@servers@bodysearch@" ,"player_search" ,8.0, -8.0, -1, 48, 0, false, false, false )
