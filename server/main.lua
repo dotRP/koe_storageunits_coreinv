@@ -1,11 +1,13 @@
 discord = {
-  ['webhook'] = '',  ---PUT YOUR WEBHOOK URL HERE
+  ['webhook'] = 'https://discord.com/api/webhooks/983805886793416795/L1ZENC-yJQy3cz6SyFTLamx519RsHUEYMxLotI0dGsspPOcZjn7FHPKRBmfCvPbU2uji',  ---PUT YOUR WEBHOOK URL HERE
   ['name'] = 'Storage Units'
 }
 
 
 ----Gets ESX-----
-ESX = exports["es_extended"]:getSharedObject()
+ESX = nil
+
+TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 
 
@@ -107,14 +109,14 @@ AddEventHandler('koe_storageunits:registerStash', function(storageID)
     }, 
     function(result3)
         stashID = json.encode(result3)
+        --local coords = vector3(1,1,-500) --GetEntityCoords(xPlayer) 
+
         local str = string.match(stashID , "%d+")
         print(str)
         local StashName = "koe_storageunits"..str
         TriggerEvent('core_inventory:server:openInventory', StashName, "koe_stash", 20, 20)
-        
-        
-
-
+        --TriggerEvent('core_inventory:client:registerExternalInventory', stashID , "stash", 20, 20,  coords)
+        --exports.ox_inventory:RegisterStash(stashID, "Storage Unit", 70, 300000)
         --TriggerClientEvent('koe_storageunits:openStash', src, stashID)
     end)
 end)
