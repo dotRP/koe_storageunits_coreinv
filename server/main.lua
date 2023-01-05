@@ -117,7 +117,7 @@ AddEventHandler('koe_storageunits:registerStash', function(storageID)
         TriggerEvent('core_inventory:server:openInventory', StashName, "koe_stash", 20, 20)
         --TriggerEvent('core_inventory:client:registerExternalInventory', stashID , "stash", 20, 20,  coords)
         --exports.ox_inventory:RegisterStash(stashID, "Storage Unit", 70, 300000)
-        --TriggerClientEvent('koe_storageunits:openStash', src, stashID)
+        TriggerClientEvent('koe_storageunits:openStash', src, stashID)
     end)
 end)
 
